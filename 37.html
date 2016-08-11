@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>  
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" charset="UTF-8"/>   
+  <script type="text/javascript"> 
+  
+      window.onload = function(){             
+     // 鼠标移动改变背景,可以通过给每行绑定鼠标移上事件和鼠标移除事件来改变所在行背景色。
+        var tr = document.getElementsByTagName("tr");
+        for(var i=0; i<tr.length; i++){
+            addThStyle(tr[i]);
+        }
+      }
+      // 改变颜色的函数
+            function addThStyle(obj){
+                obj.onmouseover = function(){
+                    obj.style.backgroundColor = " #f2f2f2";
+                };
+                obj.onmouseout = function(){
+                    obj.style.backgroundColor = "#fff";
+                }
+            }
+     
+      // 动态在表格的最后一行添加子节点
+     function addNew(){
+        var fatherNode = document.getElementById("table");
+        var iTr = document.createElement("tr");
+        var iTd = new Array();
+        for(var i=0; i<3; i++)
+        {
+            iTd[i] = document.createElement("td");
+            iTr.appendChild(iTd[i]);
+        }
+        
+        // 获取人数
+        var iCount = document.getElementsByTagName("tr").length;
+        
+        if(iCount<10){
+            iTd[0].innerHTML = "xupt"+"00"+iCount;
+        }
+        else if(iCount>=10&&iCount<100){
+            iTd[0].innerHTML = "xupt"+"0"+iCount;
+        }
+        else{
+            iTd[0].innerHTML = "xupt"+iCount;
+        }
+        
+        // 添加姓名
+        iTd[1].innerHTML = prompt("请输入新添加的名字:");
+        while(1){
+            if (iTd[1] != null){
+                alert("添加成功！");
+                break;
+            }
+            else{
+                alert("你按了[取消]按钮,是否完成本次添加？");
+                //待施工
+            }
+        }
+        console.log(this);
+        // 添加删除操作
+        iTd[2].innerHTML = "<a href='javascript:;' onclick='delNode(this);'>删除</a>"
+        fatherNode.appendChild(iTr);
+     }
+        
+     
+     // 创建删除函数
+     function delNode(obj){
+         // console.log(obj);
+         var tr=obj.parentNode.parentNode;
+         tr.parentNode.removeChild(tr);
+     }
+  </script> 
+ </head> 
+ <body> 
+     <table border="1px" width="50%" id="table">
+     <tr>
+    <th>学号</th>
+    <th>姓名</th>
+    <th>操作</th>
+     </tr>  
+
+     <tr>
+        <td>xupt001</td>
+        <td>王小明</td>
+        <td><a href="javascript:;" onclick="delNode(this);">删除</a></td>   <!--在删除按钮上添加点击事件  -->
+     </tr>
+
+     <tr>
+        <td>xupt002</td>
+        <td>刘小芳</td>
+        <td><a href="javascript:;" onclick="delNode(this)";>删除</a></td>   <!--在删除按钮上添加点击事件  -->
+     </tr>  
+
+     </table>
+     <input type="button" value="添加一行"  onClick="addNew()"/>   <!--在添加按钮上添加点击事件  -->
+ </body>
+</html>
