@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#container{
+			position: relative;
+			height:350px;
+			margin: 0 auto;
+			overflow: hidden;
+			background-color: lightblue;
+		}
+		.content{
+			position: absolute;
+			width: 190px;
+			height: 300px;
+			margin-top: 25px;
+			border-width: 1px;
+			border: solid lightgreen;
+			background-color: lightyellow;
+			z-index: 1;
+		}
+		.content:hover{
+			border-color: Fuchsia;
+			box-shadow: 4px 4px 4px 4px #666;
+			z-index: 2;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var box = document.getElementById("container");
+			var iDiv = document.getElementsByClassName("content");
+
+			var iDivWidth = iDiv[0].offsetWidth;
+			var expWidth = 100;
+			var boxWidth = iDivWidth + (iDiv.length - 1) * expWidth;
+
+			box.style.width = boxWidth + "px";
+
+			function setDiv(){
+				for(var i=1; i<iDiv.length; i++){
+					iDiv[i].style.left = iDivWidth + expWidth * (i - 1) + "px";
+				}
+			};
+
+			var translate = iDivWidth - expWidth;
+
+			for(var i = 0; i < iDiv.length; i++){
+				(function(i){
+					iDiv[i].onmouseover = function(){
+						setDiv();
+						// iDiv[i].style.backgroundcolor = powdergreen;
+						for(var j = 1; j <= i; j++){
+							iDiv[j].style.left = parseInt(iDiv[j].style.left, 10) - translate + "px";
+						}
+					};
+				})(i);
+			}
+			setDiv();
+		};
+	</script>
+</head>
+<body>
+	<div id="container">
+		<div class="content">HTML</div>
+		<div class="content">CSS</div>
+		<div class="content">JavaScript</div>
+		<div class="content">PHP</div>
+	</div>
+</body>
+</html>
