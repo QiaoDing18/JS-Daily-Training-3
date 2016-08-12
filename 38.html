@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		li{list-style: none;}
+		a{text-decoration: none;}
+		.content{
+			margin: 100px auto 0;
+			width: 300px;
+			height: 200px;
+			background-color: lightyellow;
+		}
+		#nav{display: inline-block;}
+		#nav li{
+			float: left;
+			width: 100px;
+			text-align: center;
+			border-bottom: 2px solid lightblue;
+		}
+		#nav li:hover{
+			background-color: lightgreen;
+			border-bottom: 2px solid lightgreen;
+			cursor: pointer;
+		}
+		#table{
+			width: 70%;
+			margin: 0 auto;
+		}
+		.show{display: block;}
+		.hide{display: none;}
+	</style>
+	<script>
+		window.onload = function(){
+			var getNav = document.getElementById("nav");
+		}
+	</script>
+</head>
+<body>
+	<div class="content">
+		<!-- 选项卡内容导航栏 -->
+		<ul id="nav">
+			<li>选项卡一</li>
+			<li>选项卡二</li>
+			<li>选项卡三</li>
+		</ul>
+		
+		<div id="table">
+			<ul>
+				<li><a href="#">妈的智障</a></li>
+				<li><a href="#">11111111111111111</a></li>
+				<li><a href="#">11111111111111111</a></li>
+				<li><a href="#">11111111111111111</a></li>
+				<li><a href="#">11111111111111111</a></li>
+				<li><a href="#">11111111111111111</a></li>
+				<li><a href="#">11111111111111111</a></li>
+				<li><a href="#">11111111111111111</a></li>
+			</ul>
+
+			<ul class="hide">
+				<li><a href="#">22222222222222222</a></li>
+				<li><a href="#">22222222222222222</a></li>
+				<li><a href="#">22222222222222222</a></li>
+				<li><a href="#">22222222222222222</a></li>
+				<li><a href="#">22222222222222222</a></li>
+				<li><a href="#">22222222222222222</a></li>
+				<li><a href="#">22222222222222222</a></li>
+				<li><a href="#">22222222222222222</a></li>
+			</ul>
+
+			<ul class="hide">
+				<li><a href="#">33333333333333333</a></li>
+				<li><a href="#">33333333333333333</a></li>
+				<li><a href="#">33333333333333333</a></li>
+				<li><a href="#">33333333333333333</a></li>
+				<li><a href="#">33333333333333333</a></li>
+				<li><a href="#">33333333333333333</a></li>
+				<li><a href="#">33333333333333333</a></li>
+				<li><a href="#">33333333333333333</a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
