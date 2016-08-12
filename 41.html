@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>实现DOM Ready</title>
+	<script>
+		function myReady(fn){		//fn就是以后的回调函数
+
+			// 对于现代浏览器，对DOMContentLoaded事件的处理方式采用的是标准的事件绑定方式
+			if(document.addEventListener){
+				document.addEventListener("DOMContentLoaded", fn, false);		//通过绑定事件来侦测DOMReady，冒泡阶段捕获
+			}else{
+				IEContentLoaded(fn);
+			}
+
+			// IE模拟DOMCOntentLoaded
+			function IEContentLoaded(fn){
+				var d = window.document;
+				var done = false;
+
+				// 定义保证只执行一次用户回调的的init()函数
+				var init = function(){
+					if(!done){
+						done = true;
+						fn();
+					}
+				};
+
+				//侦测DOMReady并立即调用回掉函数方法
+				(function(){
+					try{
+						// DOM 树未创建前调用doScroll会抛出错误
+						d.documentElement.doScroll("left");		//如果DOM树没创建完就会抛出错误
+					}
+					catch(e){
+						//延迟再试一次
+						setTimeout(arguments.callee, 50);
+						return;
+					}
+					// 没有错误就表示DOM树创建完毕，然后立马执行回掉函数
+					init();
+				})();
+
+				// 监听document的加载状态
+				d.onreadystatechange = function(){
+					// 如果用户实在domReady之后绑定的函数，就立即执行
+					if(d.readyState == "complete"){
+						d.onreadystatechange = null;	//清除掉
+						init();
+					}
+				}
+			}
+		}
+
+
+
+		myReady(function(){
+			document.getElementById('content').style.color = "lightblue";
+		});
+	</script>
+</head>
+<body>
+	<h1 id="content">大家好我叫乔丁</h1>
+</body>
+</html>
