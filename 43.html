@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>跨浏览器事件处理</title>
+	<script>
+	window.onload = function(){
+		var btn = document.getElementById("btn");
+		var show = function(){
+			alert("666666");
+		};
+		//添加句柄
+		var eventUtil = {
+			addHandler : function(element, type, handler){
+				if (element.addEventListener){							//DOM 2
+					element.addEventListener(type, handler, false);
+				} else if (element.attachEvent){						//IE
+					element.attachEvent("on" + type, handler);
+				} else {												//DOM 0
+					element["on" + type] = handler;
+				}
+			},
+			removeHandler : function(element, type, handler){
+				if (element.removeEventListener){
+					element.removeEventListener(type, handler, false);
+				} else if (element.detachEvent){
+					element.detachEvent("on" + type, handler);
+				} else {
+					element["on" + type] = null;
+				}
+			}
+		};
+		eventUtil.addHandler(btn, "click", show);
+	}
+	</script>
+</head>
+<body>
+	<input type="button" value="按钮" id="btn">
+</body>
+</html>
