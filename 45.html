@@ -1,0 +1,21 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+    <title>Untitled Document</title>
+    
+</head>
+<body>
+    <script type="text/javascript">
+    // 模拟Object.create
+    if(!Object.create){
+    	Object.create = function (proto){
+    		function F(){}
+    		F.prototype = proto;
+    		return new F;
+    	};
+    }
+    </script>
+</body>
+</html>
